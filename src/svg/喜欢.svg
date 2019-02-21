@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="21px" viewBox="0 0 24 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>喜欢</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="iPhone-8" transform="translate(-60.000000, -502.000000)" fill="#FD1BB8">
+            <g id="喜欢" transform="translate(60.000000, 502.000000)">
+                <path d="M17.4,0 C15.3,0 13.3227273,0.898561565 12,2.35709628 C10.6772727,0.898561565 8.7,8.22500989e-16 6.6,8.22500989e-16 C2.87727273,8.22500989e-16 0,2.6956847 0,6.1857499 C0,10.457173 4.07727273,13.882125 10.2545455,19.1693134 L12,20.6278481 L13.7454545,19.1693134 C19.9227273,13.882125 24,10.457173 24,6.1857499 C24,2.6956847 21.1227273,8.22500989e-16 17.4,0 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

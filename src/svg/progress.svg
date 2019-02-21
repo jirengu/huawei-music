@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>图-资源 15</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="50%" id="radialGradient-1">
+            <stop stop-color="#AC2D73" offset="0%"></stop>
+            <stop stop-color="#120A82" offset="92%"></stop>
+            <stop stop-color="#07006B" offset="100%"></stop>
+        </radialGradient>
+        <linearGradient x1="0%" y1="49.9945217%" x2="100%" y2="49.9945217%" id="linearGradient-2">
+            <stop stop-color="#FC429F" offset="0%"></stop>
+            <stop stop-color="#3B2EE8" stop-opacity="0.2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100.043845%" y1="50.0054783%" x2="-5.55963377e-15%" y2="50.0054783%" id="linearGradient-3">
+            <stop stop-color="#FC429F" offset="0%"></stop>
+            <stop stop-color="#3B2EE8" stop-opacity="0.2" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="51.8518519%" gradientTransform="translate(0.500000,0.500000),scale(0.964286,1.000000),translate(-0.500000,-0.500000)" id="radialGradient-4">
+            <stop stop-color="#FC429F" offset="17%"></stop>
+            <stop stop-color="#FC429F" stop-opacity="0.4" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-8" transform="translate(-169.000000, -536.000000)">
+            <g id="Group-2" transform="translate(51.000000, 536.000000)">
+                <g id="图-资源-15" transform="translate(118.000000, 0.000000)">
+                    <circle id="Oval" fill="url(#radialGradient-1)" cx="10" cy="10" r="10"></circle>
+                    <path d="M20,10 L18.6852197,10 C18.6852197,5.20328562 14.7967144,1.31478032 10,1.31478032 C5.20328562,1.31478032 1.31478032,5.20328562 1.31478032,10 L0,10 C-6.76353751e-16,4.4771525 4.4771525,1.01570749e-15 10,0 C15.5228475,-1.01570749e-15 20,4.4771525 20,10 Z" id="Path" fill="url(#linearGradient-2)"></path>
+                    <path d="M10.0043845,20 C4.48161976,19.9939616 0.00604109573,15.5203444 0,10 L1.31535679,10 C1.31535679,14.7942939 5.203604,18.6808371 10,18.6808371 C14.796396,18.6808371 18.6846432,14.7942939 18.6846432,10 L20,10 C19.99397,15.5169284 15.5237245,19.9891349 10.0043845,20 Z" id="Path" fill="url(#linearGradient-3)"></path>
+                    <ellipse id="Oval" fill="url(#radialGradient-4)" cx="9.62962963" cy="10" rx="5.18518519" ry="5"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

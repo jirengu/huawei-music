@@ -1,0 +1,210 @@
+$backgroundColor: #060a3d;
+$color: #fff;
+$color1: #868aaf;
+$color2: #db3baa;
+$color2-dark: darken($color2, 10%);
+$color2-darker: darken($color2, 30%);
+$color3: #0025f1;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#player {
+  height: 100vh;
+  background: $backgroundColor;
+  overflow: hidden;
+  .header {
+    text-align: center;
+    height: 110px;
+    h1 {
+      color: $color;
+      font-size: 20px;
+      padding-top: 20px;
+    }
+    p {
+      color: $color1;
+      font-size: 12px;
+    }
+    .balls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      span {
+        display: block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: $color2-darker;
+        margin: 0 4px;
+
+        &.current {
+          width: 8px;
+          height: 8px;
+          background: $color2;
+        }
+      }
+      
+    }
+  }  
+
+  .panels {
+    width: 200vw;
+    height: calc(100vh - 270px);
+    display: flex;
+    
+    transition: transform 0.3s;
+    align-items: center;
+
+    &.panel1 {
+      transform: translateX(0vw);
+    }
+    &.panel2 {
+      transform: translateX(-100vw);
+    }
+    .panel-effect {
+      width: 100vw;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .effect {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40vh;
+        >div {
+          background-size: contain;
+          position: absolute;
+        }
+        .effect-1 {
+          background: url(../svg/effect-no-move.svg) 0 0 no-repeat;
+          width: 70vw;
+          height: 70vw;
+          animation: rotate 20s linear infinite;
+        }
+        .effect-2 {
+          background: url(../svg/effect-move1.svg) 0 0 no-repeat;
+          width: 60vw;
+          height: 60vw;
+          animation: rotate 10s linear infinite reverse;
+        }
+        .effect-3 {
+          background: url(../svg/effect-move2.svg) 0 0 no-repeat;
+          width: 24vw;
+          height: 24vw;
+          animation: rotate 10s linear infinite;
+        }
+      }
+      .lyric {
+        text-align: center;
+        p {
+          font-size: 13px;
+          color: $color1;
+          margin-top: 8px;
+
+          &.current {
+            color: $color;
+          }
+        }
+      }
+    }
+    .panel-lyrics {
+      width: 100vw;
+      height: 100%;
+      background: red;
+    }
+  }
+
+
+  .footer {
+    height: 160px;
+    .buttons {
+      display: flex;
+      justify-content: center;
+  
+      svg {
+        width: 24px;
+        height: 24px;
+        margin: 0 20px;
+      }
+    }
+  
+    
+    .bar-area {
+      color: $color1;
+      font-size: 12px;
+      display: flex;
+      padding: 0 20px;
+      margin-top: 20px;
+      align-items: center;
+      .time-start {
+        order: 1;
+      }
+      .time-end {
+        order: 3;
+      }
+      .bar {
+        order: 2;
+        flex: 1;
+        height: 4px;
+        background: $color3;
+        border-radius: 2px;
+        margin: 0 10px;
+        .progress {
+          width: 30%;
+          height: 100%;
+          border-radius: 2px;
+          background: $color2;
+          position: relative;
+  
+          &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -7px;
+            display: block;
+            width: 16px;
+            height: 16px;
+            background: url(../svg/progress.svg) 0 0 no-repeat;
+            background-size: contain;
+          }
+        }
+      }
+    }
+  
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 0 20px;
+  
+      svg {
+        width: 28px;
+        height: 28px;
+  
+        &.btn-play-pause {
+          width: 50px;
+          height: 50px;       
+        }
+      }
+  
+    }
+  
+  }
+
+}
+
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
