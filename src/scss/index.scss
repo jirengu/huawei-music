@@ -102,20 +102,36 @@ $color3: #0025f1;
       .lyric {
         text-align: center;
         p {
-          font-size: 13px;
+          font-size: 14px;
           color: $color1;
           margin-top: 8px;
 
           &.current {
             color: $color;
+            font-size: 16px;
           }
         }
       }
     }
     .panel-lyrics {
       width: 100vw;
-      height: 100%;
-      background: red;
+      height: calc(100% - 40px);
+      text-align: center;
+      overflow: hidden;
+      .container {
+        transition: all .4s;
+        p {
+          color: $color1;
+          line-height: 2;
+          font-size: 14px;
+
+          &.current {
+            font-size: 16px;
+            color: $color;
+          }
+        }
+      }
+
     }
   }
 
