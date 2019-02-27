@@ -59,6 +59,7 @@ class Player {
     }
 
     this.audio.ontimeupdate = function() {
+      console.log(parseInt(self.audio.currentTime*1000))
       self.locateLyric()
       self.setProgerssBar()
     }
@@ -104,6 +105,7 @@ class Player {
 
 
   locateLyric() {
+    console.log('locateLyric')
     let currentTime = this.audio.currentTime*1000
     let nextLineTime = this.lyricsArr[this.lyricIndex+1][0]
     if(currentTime > nextLineTime && this.lyricIndex < this.lyricsArr.length - 1) {
@@ -112,7 +114,7 @@ class Player {
       this.setLyricToCenter(node)
       this.$$('.panel-effect .lyric p')[0].innerText = this.lyricsArr[this.lyricIndex][1]
       this.$$('.panel-effect .lyric p')[1].innerText = this.lyricsArr[this.lyricIndex+1] ? this.lyricsArr[this.lyricIndex+1][1] : ''
-      console.log(node)
+      
     }
   }
 
@@ -132,7 +134,7 @@ class Player {
         })
       })
 
-      lyricsArr.sort((v1, v2) => {
+      lyricsArr.filter(line => line[1].trim() !== '').sort((v1, v2) => {
         if(v1[0] > v2[0]) {
           return 1
         } else {

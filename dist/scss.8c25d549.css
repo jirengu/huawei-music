@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#player {
+  height: 100vh;
+  background: #060a3d;
+  overflow: hidden;
+}
+#player .header {
+  text-align: center;
+  height: 110px;
+}
+#player .header h1 {
+  color: #fff;
+  font-size: 20px;
+  padding-top: 20px;
+}
+#player .header p {
+  color: #868aaf;
+  font-size: 12px;
+}
+#player .header .balls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+#player .header .balls span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #6a134f;
+  margin: 0 4px;
+}
+#player .header .balls span.current {
+  width: 8px;
+  height: 8px;
+  background: #db3baa;
+}
+#player .panels {
+  width: 200vw;
+  height: calc(100vh - 270px);
+  display: flex;
+  transition: transform 0.3s;
+  align-items: center;
+}
+#player .panels.panel1 {
+  transform: translateX(0vw);
+}
+#player .panels.panel2 {
+  transform: translateX(-100vw);
+}
+#player .panels .panel-effect {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#player .panels .panel-effect .effect {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
+#player .panels .panel-effect .effect > div {
+  background-size: contain;
+  position: absolute;
+}
+#player .panels .panel-effect .effect .effect-1 {
+  background: url(effect-no-move.e6a51026.svg) 0 0 no-repeat;
+  width: 70vw;
+  height: 70vw;
+  animation: rotate 20s linear infinite;
+}
+#player .panels .panel-effect .effect .effect-2 {
+  background: url(effect-move1.8d0ce205.svg) 0 0 no-repeat;
+  width: 60vw;
+  height: 60vw;
+  animation: rotate 10s linear infinite reverse;
+}
+#player .panels .panel-effect .effect .effect-3 {
+  background: url(effect-move2.143040a0.svg) 0 0 no-repeat;
+  width: 24vw;
+  height: 24vw;
+  animation: rotate 10s linear infinite;
+}
+#player .panels .panel-effect .lyric {
+  text-align: center;
+}
+#player .panels .panel-effect .lyric p {
+  font-size: 14px;
+  color: #868aaf;
+  margin-top: 8px;
+}
+#player .panels .panel-effect .lyric p.current {
+  color: #fff;
+}
+#player .panels .panel-lyrics {
+  width: 100vw;
+  height: calc(100% - 40px);
+  text-align: center;
+  overflow: hidden;
+}
+#player .panels .panel-lyrics .container {
+  transition: all 0.4s;
+}
+#player .panels .panel-lyrics .container p {
+  color: #868aaf;
+  line-height: 2;
+  font-size: 14px;
+}
+#player .panels .panel-lyrics .container p.current {
+  color: #fff;
+}
+#player .footer {
+  height: 160px;
+}
+#player .footer .buttons {
+  display: flex;
+  justify-content: center;
+}
+#player .footer .buttons svg {
+  width: 24px;
+  height: 24px;
+  margin: 0 20px;
+}
+#player .footer .bar-area {
+  color: #868aaf;
+  font-size: 12px;
+  display: flex;
+  padding: 0 20px;
+  margin-top: 20px;
+  align-items: center;
+}
+#player .footer .bar-area .time-start {
+  order: 1;
+  width: 40px;
+}
+#player .footer .bar-area .time-end {
+  order: 3;
+  width: 40px;
+}
+#player .footer .bar-area .bar {
+  order: 2;
+  flex: 1;
+  height: 4px;
+  background: #0025f1;
+  border-radius: 2px;
+  margin: 0 10px;
+}
+#player .footer .bar-area .bar .progress {
+  width: 0%;
+  transition: all 0.2s;
+  height: 100%;
+  border-radius: 2px;
+  background: #db3baa;
+  position: relative;
+}
+#player .footer .bar-area .bar .progress::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: -7px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: url(progress.798a5c76.svg) 0 0 no-repeat;
+  background-size: contain;
+}
+#player .footer .actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+#player .footer .actions svg {
+  width: 28px;
+  height: 28px;
+}
+#player .footer .actions svg.btn-play-pause {
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
