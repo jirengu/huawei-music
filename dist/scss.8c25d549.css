@@ -141,9 +141,11 @@
 }
 #player .footer .bar-area .time-start {
   order: 1;
+  width: 40px;
 }
 #player .footer .bar-area .time-end {
   order: 3;
+  width: 40px;
 }
 #player .footer .bar-area .bar {
   order: 2;

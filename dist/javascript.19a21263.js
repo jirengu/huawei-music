@@ -352,32 +352,39 @@ function () {
   }, {
     key: "loadSong",
     value: function loadSong() {
+      var _this3 = this;
+
       var songObj = this.songList[this.currentIndex];
       this.$('.header h1').innerText = songObj.title;
       this.$('.header p').innerText = songObj.author + '-' + songObj.albumn;
       this.audio.src = songObj.url;
+
+      this.audio.onloadedmetadata = function () {
+        return _this3.$('.time-end').innerText = _this3.formateTime(_this3.audio.duration);
+      };
+
       this.loadLyric();
     }
   }, {
     key: "playSong",
     value: function playSong() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.audio.oncanplaythrough = function () {
-        return _this3.audio.play();
+        return _this4.audio.play();
       };
     }
   }, {
     key: "loadLyric",
     value: function loadLyric() {
-      var _this4 = this;
+      var _this5 = this;
 
       fetch(this.songList[this.currentIndex].lyric).then(function (res) {
         return res.json();
       }).then(function (data) {
         console.log(data.lrc.lyric);
 
-        _this4.setLyrics(data.lrc.lyric);
+        _this5.setLyrics(data.lrc.lyric);
 
         window.lyrics = data.lrc.lyric;
       });
@@ -386,7 +393,6 @@ function () {
     key: "locateLyric",
     value: function locateLyric() {
       var currentTime = this.audio.currentTime * 1000;
-      console.log(this.lyricsArr[this.lyricIndex + 1]);
       var nextLineTime = this.lyricsArr[this.lyricIndex + 1][0];
 
       if (currentTime > nextLineTime && this.lyricIndex < this.lyricsArr.length - 1) {
@@ -449,7 +455,17 @@ function () {
       var percent = this.audio.currentTime * 100 / this.audio.duration + '%';
       console.log(percent);
       this.$('.bar .progress').style.width = percent;
+      this.$('.time-start').innerText = this.formateTime(this.audio.currentTime);
       console.log(this.$('.bar .progress').style.width);
+    }
+  }, {
+    key: "formateTime",
+    value: function formateTime(secondsTotal) {
+      var minutes = parseInt(secondsTotal / 60);
+      minutes = minutes >= 10 ? '' + minutes : '0' + minutes;
+      var seconds = parseInt(secondsTotal % 60);
+      seconds = seconds >= 10 ? '' + seconds : '0' + seconds;
+      return minutes + ':' + seconds;
     }
   }]);
 

@@ -159,9 +159,11 @@ $color3: #0025f1;
       align-items: center;
       .time-start {
         order: 1;
+        width: 40px;
       }
       .time-end {
         order: 3;
+        width: 40px;
       }
       .bar {
         order: 2;

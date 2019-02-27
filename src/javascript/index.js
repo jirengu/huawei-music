@@ -82,6 +82,8 @@ class Player {
     this.$('.header h1').innerText = songObj.title
     this.$('.header p').innerText = songObj.author + '-' + songObj.albumn
     this.audio.src = songObj.url
+    this.audio.onloadedmetadata = () => this.$('.time-end').innerText = this.formateTime(this.audio.duration)
+    
     this.loadLyric()
   }
 
@@ -103,13 +105,11 @@ class Player {
 
   locateLyric() {
     let currentTime = this.audio.currentTime*1000
-    console.log(this.lyricsArr[this.lyricIndex+1])
     let nextLineTime = this.lyricsArr[this.lyricIndex+1][0]
     if(currentTime > nextLineTime && this.lyricIndex < this.lyricsArr.length - 1) {
       this.lyricIndex++
       let node = this.$('[data-time="'+this.lyricsArr[this.lyricIndex][0]+'"]')
       this.setLyricToCenter(node)
-
       this.$$('.panel-effect .lyric p')[0].innerText = this.lyricsArr[this.lyricIndex][1]
       this.$$('.panel-effect .lyric p')[1].innerText = this.lyricsArr[this.lyricIndex+1] ? this.lyricsArr[this.lyricIndex+1][1] : ''
       console.log(node)
@@ -162,7 +162,16 @@ class Player {
     let percent = (this.audio.currentTime * 100 /this.audio.duration) + '%'
     console.log(percent)
     this.$('.bar .progress').style.width = percent
+    this.$('.time-start').innerText = this.formateTime(this.audio.currentTime)
     console.log(this.$('.bar .progress').style.width)
+  }
+
+  formateTime(secondsTotal) {
+    let minutes = parseInt(secondsTotal/60)
+    minutes = minutes >= 10 ? '' + minutes : '0' + minutes
+    let seconds = parseInt(secondsTotal%60)
+    seconds = seconds >= 10 ? '' + seconds : '0' + seconds
+    return minutes + ':' + seconds
   }
 
 }
