@@ -296,10 +296,8 @@ function () {
       }).then(function (data) {
         console.log(data);
         _this2.songList = data;
-        _this2.audio.src = _this2.songList[_this2.currentIndex].url;
 
-        _this2.loadLyric(); //this.playSong()
-
+        _this2.loadSong();
       });
     }
   }, {
@@ -323,15 +321,20 @@ function () {
 
       this.$('.btn-pre').onclick = function () {
         console.log('pre');
-        self.playPrevSong();
+        self.currentIndex = (self.songList.length + self.currentIndex - 1) % self.songList.length;
+        self.loadSong();
+        self.playSong();
       };
 
       this.$('.btn-next').onclick = function () {
-        self.playNextSong();
+        self.currentIndex = (self.currentIndex + 1) % self.songList.length;
+        self.loadSong();
+        self.playSong();
       };
 
       this.audio.ontimeupdate = function () {
-        self.locateLyric(this.currentTime);
+        self.locateLyric();
+        self.setProgerssBar();
       };
 
       var swiper = new _swiper.default(this.$('.panels'));
@@ -347,101 +350,84 @@ function () {
       });
     }
   }, {
+    key: "loadSong",
+    value: function loadSong() {
+      var songObj = this.songList[this.currentIndex];
+      this.$('.header h1').innerText = songObj.title;
+      this.$('.header p').innerText = songObj.author + '-' + songObj.albumn;
+      this.audio.src = songObj.url;
+      this.loadLyric();
+    }
+  }, {
     key: "playSong",
     value: function playSong() {
       var _this3 = this;
 
-      this.audio.src = this.songList[this.currentIndex].url;
-
       this.audio.oncanplaythrough = function () {
         return _this3.audio.play();
-      };
-
-      this.loadLyric();
-    }
-  }, {
-    key: "playPrevSong",
-    value: function playPrevSong() {
-      var _this4 = this;
-
-      this.currentIndex = (this.songList.length + this.currentIndex - 1) % this.songList.length;
-      this.audio.src = this.songList[this.currentIndex].url;
-
-      this.audio.oncanplaythrough = function () {
-        return _this4.audio.play();
-      };
-    }
-  }, {
-    key: "playNextSong",
-    value: function playNextSong() {
-      var _this5 = this;
-
-      this.currentIndex = (this.songList.length + this.currentIndex + 1) % this.songList.length;
-      this.audio.src = this.songList[this.currentIndex].url;
-
-      this.audio.oncanplaythrough = function () {
-        return _this5.audio.play();
       };
     }
   }, {
     key: "loadLyric",
     value: function loadLyric() {
-      var _this6 = this;
+      var _this4 = this;
 
       fetch(this.songList[this.currentIndex].lyric).then(function (res) {
         return res.json();
       }).then(function (data) {
         console.log(data.lrc.lyric);
 
-        _this6.setLyrics(data.lrc.lyric);
+        _this4.setLyrics(data.lrc.lyric);
 
         window.lyrics = data.lrc.lyric;
       });
     }
   }, {
-    key: "formatTime",
-    value: function formatTime(currentTime) {
-      var totalSeconds = parseInt(currentTime);
-      var milliseconds = currentTime - totalSeconds;
-      var millisecondsStr = milliseconds.toFixed(3).substr(1);
-      var minutes = parseInt(totalSeconds / 60);
-      var minutesStr = minutes > 10 ? '' + minutes : '0' + minutes;
-      var seconds = totalSeconds % 60;
-      var secondsStr = seconds > 10 ? '' + seconds : '0' + seconds;
-      return minutesStr + ':' + secondsStr + millisecondsStr;
-    }
-  }, {
     key: "locateLyric",
-    value: function locateLyric(currentTime) {
-      var formatedTime = this.formatTime(currentTime);
+    value: function locateLyric() {
+      var currentTime = this.audio.currentTime * 1000;
+      console.log(this.lyricsArr[this.lyricIndex + 1]);
       var nextLineTime = this.lyricsArr[this.lyricIndex + 1][0];
 
-      if (formatedTime > nextLineTime) {
+      if (currentTime > nextLineTime && this.lyricIndex < this.lyricsArr.length - 1) {
         this.lyricIndex++;
         var node = this.$('[data-time="' + this.lyricsArr[this.lyricIndex][0] + '"]');
         this.setLyricToCenter(node);
         this.$$('.panel-effect .lyric p')[0].innerText = this.lyricsArr[this.lyricIndex][1];
-        this.$$('.panel-effect .lyric p')[1].innerText = this.lyricsArr[this.lyricIndex + 1][1];
+        this.$$('.panel-effect .lyric p')[1].innerText = this.lyricsArr[this.lyricIndex + 1] ? this.lyricsArr[this.lyricIndex + 1][1] : '';
         console.log(node);
       }
-
-      console.log(formatedTime);
     }
   }, {
     key: "setLyrics",
     value: function setLyrics(lyrics) {
+      this.lyricIndex = 0;
       var fragment = document.createDocumentFragment();
-      this.lyricsArr = lyrics.split(/\n/).filter(function (str) {
+      var lyricsArr = [];
+      this.lyricsArr = lyricsArr;
+      lyrics.split(/\n/).filter(function (str) {
         return str.match(/\[.+?\]/);
-      }).map(function (line) {
-        return [line.match(/\[.+?\]/)[0].replace(/[\[\]]/g, ''), line.replace(/\[.+?\]/, '')];
+      }).forEach(function (line) {
+        var str = line.replace(/\[.+?\]/g, '');
+        line.match(/\[.+?\]/g).forEach(function (t) {
+          t = t.replace(/[\[\]]/g, '');
+          var milliseconds = parseInt(t.slice(0, 2)) * 60 * 1000 + parseInt(t.slice(3, 5)) * 1000 + parseInt(t.slice(6));
+          lyricsArr.push([milliseconds, str]);
+        });
       });
-      this.lyricsArr.forEach(function (line) {
+      lyricsArr.sort(function (v1, v2) {
+        if (v1[0] > v2[0]) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }).forEach(function (line) {
         var node = document.createElement('p');
         node.setAttribute('data-time', line[0]);
         node.innerText = line[1];
         fragment.appendChild(node);
       });
+      this.$('.panel-lyrics .container').innerHTML = '';
       this.$('.panel-lyrics .container').appendChild(fragment);
     }
   }, {
@@ -455,6 +441,15 @@ function () {
         return node.classList.remove('current');
       });
       node.classList.add('current');
+    }
+  }, {
+    key: "setProgerssBar",
+    value: function setProgerssBar() {
+      console.log('set setProgerssBar');
+      var percent = this.audio.currentTime * 100 / this.audio.duration + '%';
+      console.log(percent);
+      this.$('.bar .progress').style.width = percent;
+      console.log(this.$('.bar .progress').style.width);
     }
   }]);
 

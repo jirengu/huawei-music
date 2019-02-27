@@ -171,7 +171,8 @@ $color3: #0025f1;
         border-radius: 2px;
         margin: 0 10px;
         .progress {
-          width: 30%;
+          width: 0%;
+          transition: all .2s;
           height: 100%;
           border-radius: 2px;
           background: $color2;
@@ -180,7 +181,7 @@ $color3: #0025f1;
           &::after {
             content: '';
             position: absolute;
-            right: 0;
+            right: -8px;
             top: -7px;
             display: block;
             width: 16px;

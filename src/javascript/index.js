@@ -25,9 +25,7 @@ class Player {
       .then(data => {
         console.log(data)
         this.songList = data
-        this.audio.src = this.songList[this.currentIndex].url
-        this.loadLyric()
-        //this.playSong()
+        this.loadSong()
       })
   }
 
@@ -49,15 +47,20 @@ class Player {
 
     this.$('.btn-pre').onclick = function() {
       console.log('pre')
-      self.playPrevSong()
+      self.currentIndex = (self.songList.length + self.currentIndex - 1) % self.songList.length
+      self.loadSong()
+      self.playSong()
     }
 
     this.$('.btn-next').onclick = function() {
-      self.playNextSong()
+      self.currentIndex = (self.currentIndex + 1) % self.songList.length
+      self.loadSong()
+      self.playSong()
     }
 
     this.audio.ontimeupdate = function() {
-      self.locateLyric(this.currentTime)
+      self.locateLyric()
+      self.setProgerssBar()
     }
 
     let swiper = new Swiper(this.$('.panels'))
@@ -74,23 +77,18 @@ class Player {
     })
   }
 
-  playSong() {
-    this.audio.src = this.songList[this.currentIndex].url
-    this.audio.oncanplaythrough = () => this.audio.play()
+  loadSong() {
+    let songObj = this.songList[this.currentIndex]
+    this.$('.header h1').innerText = songObj.title
+    this.$('.header p').innerText = songObj.author + '-' + songObj.albumn
+    this.audio.src = songObj.url
     this.loadLyric()
   }
 
-  playPrevSong() {
-    this.currentIndex = (this.songList.length + this.currentIndex - 1) % this.songList.length
-    this.audio.src = this.songList[this.currentIndex].url
+  playSong() {
     this.audio.oncanplaythrough = () => this.audio.play()
   }
 
-  playNextSong() {
-    this.currentIndex = (this.songList.length + this.currentIndex + 1) % this.songList.length
-    this.audio.src = this.songList[this.currentIndex].url
-    this.audio.oncanplaythrough = () => this.audio.play()
-  }
 
   loadLyric() {
     fetch(this.songList[this.currentIndex].lyric)
@@ -102,48 +100,51 @@ class Player {
       })
   }
 
-  formatTime(currentTime) {
-    let totalSeconds = parseInt(currentTime)
-    let milliseconds = currentTime - totalSeconds
-    let millisecondsStr = milliseconds.toFixed(3).substr(1)
-    let minutes = parseInt(totalSeconds/60)
-    let minutesStr = minutes > 10 ?  '' + minutes : '0' + minutes
-    let seconds = totalSeconds%60
-    let secondsStr = seconds > 10 ? '' + seconds : '0' + seconds
-    return minutesStr + ':' + secondsStr + millisecondsStr
-  }
 
-  locateLyric(currentTime) {
-    let formatedTime = this.formatTime(currentTime)
+  locateLyric() {
+    let currentTime = this.audio.currentTime*1000
+    console.log(this.lyricsArr[this.lyricIndex+1])
     let nextLineTime = this.lyricsArr[this.lyricIndex+1][0]
-    if(formatedTime > nextLineTime) {
+    if(currentTime > nextLineTime && this.lyricIndex < this.lyricsArr.length - 1) {
       this.lyricIndex++
       let node = this.$('[data-time="'+this.lyricsArr[this.lyricIndex][0]+'"]')
       this.setLyricToCenter(node)
 
       this.$$('.panel-effect .lyric p')[0].innerText = this.lyricsArr[this.lyricIndex][1]
-      this.$$('.panel-effect .lyric p')[1].innerText = this.lyricsArr[this.lyricIndex+1][1]
+      this.$$('.panel-effect .lyric p')[1].innerText = this.lyricsArr[this.lyricIndex+1] ? this.lyricsArr[this.lyricIndex+1][1] : ''
       console.log(node)
     }
-
-    console.log(formatedTime)
   }
 
   setLyrics(lyrics) {
+    this.lyricIndex = 0
     let fragment = document.createDocumentFragment()
-    this.lyricsArr = lyrics.split(/\n/)
+    let lyricsArr  = []
+    this.lyricsArr = lyricsArr
+    lyrics.split(/\n/)
       .filter(str => str.match(/\[.+?\]/))
-      .map(line => [ 
-        line.match(/\[.+?\]/)[0].replace(/[\[\]]/g,''), 
-        line.replace(/\[.+?\]/, '')
-      ])
-
-      this.lyricsArr.forEach(line => {
-        let node = document.createElement('p')
-        node.setAttribute('data-time', line[0])
-        node.innerText = line[1]
-        fragment.appendChild(node)
+      .forEach(line => {
+        let str = line.replace(/\[.+?\]/g, '')
+        line.match(/\[.+?\]/g).forEach(t=>{
+          t = t.replace(/[\[\]]/g,'')
+          let milliseconds = parseInt(t.slice(0,2))*60*1000 + parseInt(t.slice(3,5))*1000 + parseInt(t.slice(6))
+          lyricsArr.push([milliseconds, str])
+        })
       })
+
+      lyricsArr.sort((v1, v2) => {
+        if(v1[0] > v2[0]) {
+          return 1
+        } else {
+          return -1
+        }
+      }).forEach(line => {
+          let node = document.createElement('p')
+          node.setAttribute('data-time', line[0])
+          node.innerText = line[1]
+          fragment.appendChild(node)
+        })
+      this.$('.panel-lyrics .container').innerHTML = ''
       this.$('.panel-lyrics .container').appendChild(fragment)
   }
 
@@ -154,6 +155,14 @@ class Player {
     this.$('.panel-lyrics .container').style.transform = `translateY(-${translateY}px)`
     this.$$('.panel-lyrics p').forEach(node => node.classList.remove('current'))
     node.classList.add('current')
+  }
+
+  setProgerssBar() {
+    console.log('set setProgerssBar')
+    let percent = (this.audio.currentTime * 100 /this.audio.duration) + '%'
+    console.log(percent)
+    this.$('.bar .progress').style.width = percent
+    console.log(this.$('.bar .progress').style.width)
   }
 
 }
