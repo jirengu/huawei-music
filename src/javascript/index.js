@@ -1,5 +1,6 @@
 console.log('hello  饥人谷sss')
 import './icons.js'
+import Swiper from './swiper.js'
 
 
 const $ = selector => document.querySelector(selector)
@@ -50,6 +51,17 @@ class Player {
     this.root.querySelector('.btn-next').onclick = function() {
       self.playNextSong()
     }
+    let swiper = new Swiper(this.root.querySelector('.panels'))
+    swiper.on('swipLeft', function(){
+      this.classList.remove('panel1')
+      this.classList.add('panel2')
+      console.log('left')
+    })
+    swiper.on('swipRight', function(){
+      this.classList.remove('panel2')
+      this.classList.add('panel1')
+      console.log('right')
+    })
   }
 
   playPrevSong() {
