@@ -7,7 +7,7 @@ svgPlaceholder.style.overflow = "hidden"
 document.body.appendChild(svgPlaceholder)
 svgPlaceholder.innerHTML = `
 <?xml version="1.0" encoding="UTF-8"?>
-<svg style="display:none" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg style="display:none"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
     <title>下载</title>
     <desc>Created with Sketch.</desc>
@@ -56,8 +56,8 @@ svgPlaceholder.innerHTML = `
 
 
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <symbol id="icon-pre" width="120px" height="120px" viewBox="0 0 120 120">
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol id="icon-pre" width="28px" height="28px" viewBox="0 0 120 120">
     <defs >
         <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="50%" gradientTransform="translate(0.500000,0.500000),scale(1.000000,0.994186),translate(-0.500000,-0.500000)" id="radialGradient-1">
             <stop stop-color="#AC2D73" offset="0%"></stop>
@@ -106,7 +106,7 @@ svgPlaceholder.innerHTML = `
         </g>
     </g>
   </symbol>
-  <symbol id="icon-next" width="120px" height="120px" viewBox="0 0 120 120">
+  <symbol id="icon-next" width="24px" height="24px" viewBox="0 0 120 120">
         <defs>
         <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="50%" gradientTransform="translate(0.500000,0.500000),scale(1.000000,0.994186),translate(-0.500000,-0.500000)" id="radialGradient-1">
             <stop stop-color="#AC2D73" offset="0%"></stop>
@@ -153,7 +153,7 @@ svgPlaceholder.innerHTML = `
         </g>
     </g>
   </symbol>
-  <symbol id="icon-play" width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <symbol id="icon-play" width="50px" height="50px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
     <title>图-资源 14</title>
     <desc>Created with Sketch.</desc>
@@ -211,7 +211,7 @@ svgPlaceholder.innerHTML = `
     </g>
 </symbol>
   
-  <symbol id="icon-order" width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <symbol id="icon-order" width="24px" height="24px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
     <title>循环模式</title>
     <desc>Created with Sketch.</desc>
@@ -263,7 +263,7 @@ svgPlaceholder.innerHTML = `
     </g>
 </symbol>
   <?xml version="1.0" encoding="UTF-8"?>
-<symbol id="icon-list" width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<symbol id="icon-list" width="24px" height="24px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
     <title>音乐</title>
     <desc>Created with Sketch.</desc>
@@ -315,7 +315,7 @@ svgPlaceholder.innerHTML = `
     </g>
 </symbol>
   <?xml version="1.0" encoding="UTF-8"?>
-<symbol id="icon-pause" width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<symbol id="icon-pause" width="50px" height="50px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
     <title>图-资源 14 copy</title>
     <desc>Created with Sketch.</desc>
@@ -376,7 +376,7 @@ svgPlaceholder.innerHTML = `
     </g>
 </symbol>
   <?xml version="1.0" encoding="UTF-8"?>
-<symbol id="icon-single" width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<symbol id="icon-single" width="24px" height="24px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
     <title>循环模式 单曲</title>
     <desc>Created with Sketch.</desc>
@@ -428,8 +428,9 @@ svgPlaceholder.innerHTML = `
         </g>
     </g>
 </symbol>
+
   <?xml version="1.0" encoding="UTF-8"?>
-<symbol id="icon-circle" width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<symbol id="icon-circle" width="28px" height="28px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
     <title>循环模式</title>
     <desc>Created with Sketch.</desc>
@@ -482,7 +483,7 @@ svgPlaceholder.innerHTML = `
 </symbol>
   
   <?xml version="1.0" encoding="UTF-8"?>
-<symbol id="icon-inorder" width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<symbol id="icon-inorder" width="28px" height="28px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
     <title>循环模式 乱序</title>
     <desc>Created with Sketch.</desc>
