@@ -106,7 +106,9 @@ class Player {
 
   locateLyric() {
     console.log('locateLyric')
+    if(this.lyricIndex === this.lyricsArr.length-1) return
     let currentTime = this.audio.currentTime*1000
+    
     let nextLineTime = this.lyricsArr[this.lyricIndex+1][0]
     if(currentTime > nextLineTime && this.lyricIndex < this.lyricsArr.length - 1) {
       this.lyricIndex++

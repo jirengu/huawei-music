@@ -394,6 +394,7 @@ function () {
     key: "locateLyric",
     value: function locateLyric() {
       console.log('locateLyric');
+      if (this.lyricIndex === this.lyricsArr.length - 1) return;
       var currentTime = this.audio.currentTime * 1000;
       var nextLineTime = this.lyricsArr[this.lyricIndex + 1][0];
 
@@ -503,7 +504,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63469" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59792" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
